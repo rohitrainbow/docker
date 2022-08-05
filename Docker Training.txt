@@ -1,0 +1,64 @@
+vlmazbastion01.fisdev.local
+ssh vemaztechtrg321admin@10.33.65.20
+
+--------------------------Day1-------------------------------------------
+
+1. sudo yum install -y yum-utils
+
+2. sudo yum-config-manager \
+    --add-repo \
+https://download.docker.com/linux/centos/docker-ce.repo
+
+3. sudo vi /etc/yum.repos.d/docker-ce.repo
+
+4. sudo yum install --nobest docker-ce
+
+5. Change mount path by editing file - vi /etc/docker/daemon.json
+{
+    "storage-driver": "overlay2",
+    "data-root": "/mnt/training/binaries/docker/lib",
+    "exec-root": "/mnt/training/binaries/docker/run",
+    "selinux-enabled": true,
+    "experimental": true,
+    "log-driver": "json-file",
+    "log-opts": {
+    "max-size": "100m",
+    "max-file": "5"
+    },
+    "group": "root"
+}
+
+
+6. sudo systemctl daemon-reload
+7. sudo systemctl start docker
+8. docker info
+9. docker run -it --name nginx -p8080:80 nginx (docker run -it -d --name nginx -p8080:80 nginx)  docker ps -a
+
+-->Additional
+https://newbedev.com/shell-error-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-var-run-docker-sock-get-http-2fvar-2frun-2fdocker-sock-v1-24-info-dial-unix-var-run-docker-sock-connect-permission-denied-code-example
+sudo chmod 666 /var/run/docker.sock
+sudo newgrp docker
+sudo chmod 666  /var/run/docker.sock
+sudo usermod -aG docker ${USER}
+
+
+docker ps -a
+docker start inginx
+docker rm -f inginx
+docker exec -it mynginxchange /bin/bash
+clear
+dockerp s -a
+docker ps -a
+docker commit -m"fixed issue created hell.txt" mynginxchange nginx-hello:1.0
+docker images
+docker run -it -d --name fixed -p8082:80 nginx-hello:1.0
+docker ps -a
+docker exec -it fixed /bin/bash
+docker inspect nginx-hello:1.0
+clear
+dockerp s -a
+docker ps -a
+docker stop nginx-hello:1.0
+docker stop fixed
+docker ps -a
+docker start fixed
