@@ -62,3 +62,40 @@ docker stop nginx-hello:1.0
 docker stop fixed
 docker ps -a
 docker start fixed
+
+
+---------------------Docker Volume & Network-------------------------
+docker volume ls
+docker volume inspect mydemo
+sudo ls /mnt/training/binaries/docker/lib/volumes/mydemo/_data
+sudo cat /mnt/training/binaries/docker/lib/volumes/mydemo/_data
+sudo cat /mnt/training/binaries/docker/lib/volumes/mydemo/_data/cont1.t
+#docker volume rm mydemo
+#docker volume prune -a
+docker volume prune -a
+docker volume prune -f
+docker volume ls
+ls -ltr
+ls myapp/
+docker volume create newvol
+docker run -it -d --name ub1 -vnewvol:/tmp ubuntu
+docker inspect ub1
+docker inspect ubuntu
+docker network ls
+ifconfig
+docker network ls
+#docker network create -d bridge mynetwork
+docker ps -a
+docker inspect ub1
+docker network inspect bridge
+docker ps -a
+docker network inspect -d bridge mynetwork
+docker network create -d bridge mynetwork
+docker network ls
+docker run -it -d --name ub2 --network mynetwork ubuntu
+docker ps -a
+docker network inspect mynetwork
+docker network inspect bridge
+docker inspect ub2
+docker network inspect mynetwork
+
