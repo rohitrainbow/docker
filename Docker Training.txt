@@ -99,3 +99,51 @@ docker network inspect bridge
 docker inspect ub2
 docker network inspect mynetwork
 
+----------------------------------------Docker File-------------------------------------------------
+cat Dockerfile
+FROM ubuntu:latest
+LABEL supportemail=jitesh.agarwal@fisglobal.com
+ENV LOGPATH=/tmp/log
+RUN mkdir /tmp/log
+RUN mkdir /tmp/myapp
+COPY ./hello.sh /tmp/myapp
+WORKDIR /tmp/myapp
+CMD ["/bin/bash", "./hello.sh"]
+#CMD ["echo", "Hello-world"]
+[vemaztechtrg301admin@vemaztechtrg301 dockerdemo]$ cat Dockerfile1.0
+FROM ubuntu:latest
+LABEL supportemail=jitesh.agarwal@fisglobal.com
+ENV LOGPATH=/tmp/log
+RUN mkdir /tmp/log \
+     /tmp/myappcp \
+     /tmp/myappadd
+COPY demo.tar /tmp/myappcp
+ADD demo.tar /tmp/myappadd
+
+#COPY ./hello.sh /tmp/myappcp
+
+WORKDIR /tmp/myapp
+
+RUN ls /tmp
+
+#CMD ["/bin/bash", "./hello.sh"]
+CMD ["echo", "Hello-world"]
+[vemaztechtrg301admin@vemaztechtrg301 dockerdemo]$ cat DockerfileEntry
+FROM ubuntu:latest
+LABEL supportemail=jitesh.agarwal@fisglobal.com
+ENV LOGPATH=/tmp/log
+RUN mkdir /tmp/log \
+     /tmp/myappcp \
+     /tmp/myappadd
+COPY demo.tar /tmp/myappcp
+ADD demo.tar /tmp/myappadd
+
+#COPY ./hello.sh /tmp/myappcp
+
+WORKDIR /tmp/myapp
+
+RUN ls /tmp
+
+#CMD ["/bin/bash", "./hello.sh"]
+#CMD ["echo", "Hello-world"]
+ENTRYPOINT ["echo", "Hello-world"]
