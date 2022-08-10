@@ -147,3 +147,39 @@ RUN ls /tmp
 #CMD ["/bin/bash", "./hello.sh"]
 #CMD ["echo", "Hello-world"]
 ENTRYPOINT ["echo", "Hello-world"]
+
+
+-------------------------------Docker Compose-----------------
+ Installing docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
+sudo mv docker-compose /usr/local/bin && sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose 
+
+[11:51 AM] Agarwal, Jitesh
+docker network create mongo-network
+docker run -d -p 27017:27017 -eMONGO_INITDB_ROOT_USERNAME=admin -eMONGO_INITDB_ROOT_PASSWORD=password --net mongo-network --name mongodb mongo
+docker run -d \
+-p 8081:8081 \
+-e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+-e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
+-e ME_CONFIG_MONGODB_SERVER=mongodb \
+--net mongo-network \
+--name mongo-express \
+mongo-express
+
+vi docker-compose.yaml
+docker network ls
+docker-compose up -d
+docker ps -a
+docker volume ls
+docker ps -a
+docker-compose stop
+docker ps -
+docker-compose down
+docker ps -a
+docker network ls
+docker volume ls
+docker-compose up -d 
+docker ps -a
+docker volume ls
+
