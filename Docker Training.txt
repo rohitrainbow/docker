@@ -207,3 +207,41 @@ kubectl get nodes
 sudo chmod 666 /var/run/docker.sock
 sudo newgrp docker
 sudo usermod -aG docker ${USER}
+
+kubectl apply -f <filename>
+
+
+kubectl delete -f <filename>
+
+
+Create or update an Object
+$ kubectl create -f pod1.yml  (or) $ kubectl apply -f pod1.yml
+
+Get the list of the pod objects available
+$ kubectl get pods
+$ kubectl get pods -o wide
+$ kubectl get pods --all-namespaces
+
+Get the details of the pod object
+$ kubectl describe pod <podname>
+
+Get running logs from the container inside the pod object
+$ kubectl logs -f <podname>
+$ kubectl logs -f <podname> -c <containername>
+
+
+Run OS commands in an existing pod (1 container pod)
+$ kubectl exec <podname> -- <OScmd>
+$ kubectl exec testpod2 -- hostname -i
+
+Run OS commands in an existing container( multi container pod)
+$ kubectl exec <podname>  -c <containername> -- <OScmd>
+
+Attach to the running container interactively
+$ kubectl exec <podname> -i -t -- /bin/bash (or)
+$ kubectl attach <podname> -i
+
+Delete a Pod
+$ kubectl delete pods <podname> (or)
+$ kubectl delete -f <YAML>
+
