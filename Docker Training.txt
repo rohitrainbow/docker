@@ -202,6 +202,8 @@ minikube status
 minikube stop
 minikube delete
 
+kubectl get nodes
+
 sudo chmod 666 /var/run/docker.sock
 sudo newgrp docker
 sudo usermod -aG docker ${USER}
